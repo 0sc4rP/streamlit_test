@@ -13,7 +13,8 @@ if 'df_experiment_results' not in st.session_state:
 
 st.header('Lanzar una moneda')
 
-chart = st.line_chart([0.5])
+placeholder = st.empty()
+means = [0.5]
 
 def toss_coin(n): # función que emula el lanzamiento de una moneda
 
@@ -28,7 +29,8 @@ def toss_coin(n): # función que emula el lanzamiento de una moneda
         if r == 1:
             outcome_1_count += 1
         mean = outcome_1_count / outcome_no
-        chart.add_rows([mean])
+        means.append(mean)
+        placeholder.line_chart(means)
         time.sleep(0.05)
 
     return mean
@@ -53,4 +55,5 @@ if start_button:
 st.write(st.session_state['df_experiment_results'])
 
 st.write('Esta aplicación aún no es funcional. En construcción.')
+
 
